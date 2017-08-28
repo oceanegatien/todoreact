@@ -38,14 +38,17 @@ class App extends React.Component {
 
     })
   }
-  
+  _onChangeFilter(filter){
+    this.setState({
+      filter: filter
+    })
   }
   componentDidMount(){
     let storage = JSON.parse(localStorage.getItem('state'));
     if (storage !== null && this.state.tasks.length === 0 ) {
       this.setState({
         tasks: storage
-      })
+      });
 
     }
   }
@@ -55,11 +58,11 @@ class App extends React.Component {
     }
   }
   render(){
-    console.log(this.)
+    console.log(this.state.filter);
     return (
-      <div>
+      <div className="row">
         < AddTaskInput addTask={this._addTaskOnSubmit} />
-        < List tasks={this.state.tasks} changeStatus= {this._changeTaskStatut} />
+        < List tasks={this.state.tasks} changeStatus= {this._changeTaskStatut} filter={this.state.filter} />
         < Filter onChangeFilter={this._onChangeFilter} />
       </div>
   )
